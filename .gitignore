@@ -1,0 +1,73 @@
+# Gradle specific files
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Compiled class files
+*.class
+
+# Logs
+*.log
+*.log.*
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~ 
+
+# IDE specific files
+.idea/
+*.iml
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Operating system generated files
+.DS_Store
+Thumbs.db
+*.~lock.*
+ehthumbs.db
+Icon?
+
+# JAR/WAR files
+*.jar
+*.war
+
+# Maven specific files (if applicable)
+.mvn/
+target/
+
+# IntelliJ IDEA
+out/
+.idea/
+*.ipr
+*.iws
+*.iml
+*.class
+
+# Eclipse
+*.class
+*.swp
+*.tmp
+*.bak
+*.swo
+*.log
+*.log.*
+
+# VS Code
+.vscode/
+.history/
+
+# Misc
+*.out
+*.bak
+
+# Spring Boot devtools
+.spring-boot-devtools.properties
+
+# Security files
+secrets/
+.env
+.env.*
