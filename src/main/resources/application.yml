@@ -1,4 +1,14 @@
 spring:
   docker:
     compose:
-      enabled: false 
+      enabled: false
+  datasource:
+  url: jdbc:postgresql://localhost:5432/registration
+  username: 
+  password:
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
