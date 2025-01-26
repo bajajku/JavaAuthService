@@ -26,13 +26,13 @@ public class JwtService {
     /**
      * Secret key used for signing JWT tokens, injected from application properties
      */
-    @Value("${jwt.secret.key}")
+    @Value("${security.jwt.secret-key}")
     private String secretKey;
 
     /**
      * Token expiration time in milliseconds, injected from application properties
      */
-    @Value("${jwt.expiration.time}")
+    @Value("${security.jwt.expiration-time}")
     private Long expirationTime;
 
     /**

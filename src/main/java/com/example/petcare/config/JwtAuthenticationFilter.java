@@ -22,6 +22,8 @@ import java.io.IOException;
 /**
  * Filter that intercepts every request to validate JWT tokens
  */
+
+
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
