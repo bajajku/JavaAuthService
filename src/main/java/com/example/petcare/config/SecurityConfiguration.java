@@ -15,6 +15,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+/**
+ * Main security configuration for the application
+ * Configures authentication, authorization, CORS, and JWT filters
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -27,16 +31,23 @@ public class SecurityConfiguration {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
+    /**
+     * Configures security settings for HTTP requests
+     * - Disables CSRF
+     * - Sets up authentication rules
+     * - Configures stateless session management
+     * - Adds JWT authentication filter
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable())  // Disable CSRF for stateless API
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/auth/**").permitAll()  // Public auth endpoints
+                        .anyRequest().authenticated()  // All other routes need authentication
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // No session state
                 )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -44,9 +55,12 @@ public class SecurityConfiguration {
         return http.build();
     }
 
+    /**
+     * Configures CORS settings for cross-origin requests
+     * Allows specific origins, methods, and headers
+     */
     @Bean
-    public CorsConfigurationSource corsConfigurationSource(){
-
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("https://backend.com","http://localhost:8080"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -58,7 +72,4 @@ public class SecurityConfiguration {
 
         return source;
     }
-
-
-    
 }
