@@ -18,18 +18,24 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    
     private Long id;
+    
     @Column(unique = true, nullable = false)
-
     private String username;
+    
     @Column(unique = true, nullable = false)
     private String email;
+    
     @Column(nullable = false)
     private String password;
+    
     @Column(nullable = false)
     private String role;
 
+    @Column(name = "verification_code")
+    private String verificationCode;
+    @Column(name = "verification_expiration")
+    private LocalDateTime verificationCodeExpiresAt;
     // Constructor for creating an unverified user
 
     public User(String username, String email, String password, String role) {
