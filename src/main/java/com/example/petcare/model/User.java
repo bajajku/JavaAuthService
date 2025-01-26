@@ -29,8 +29,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
     
-    @Column(nullable = false)
-    private String role;
+    // @Column(nullable = false)
+    // private String role;
 
     @Column(name = "verification_code")
     private String verificationCode;
@@ -38,11 +38,10 @@ public class User implements UserDetails {
     private LocalDateTime verificationCodeExpiresAt;
     // Constructor for creating an unverified user
 
-    public User(String username, String email, String password, String role) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
     }
     // Default constructor
     public User(){}
@@ -67,8 +66,14 @@ public class User implements UserDetails {
         return true;
     }
 
-    @Override
+    private boolean enabled;
+
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
 }
